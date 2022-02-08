@@ -167,7 +167,7 @@ def demo_run():
   pi = SmallReactivePolicy("pi", np.zeros((44,)), np.zeros((17,)))
   pi.load_weights()
   t1 = time.time()
-  timinglog = p.startStateLogging(p.STATE_LOGGING_PROFILE_TIMINGS, "humanoidTimings.json")
+  #timinglog = p.startStateLogging(p.STATE_LOGGING_PROFILE_TIMINGS, "humanoidTimings.json")
 
   frame = 0
   while 1:
