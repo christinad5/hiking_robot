@@ -6,10 +6,10 @@ import csv
 physicsClient = p.connect(p.DIRECT) #p.GUI for graphics
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 p.setGravity(0,0,-9.8)
-planeId = p.loadURDF("/data/plane.urdf")
+planeId = p.loadURDF("plane.urdf")
 startPos = [0,0,1]
 startOrientation = p.getQuaternionFromEuler([0,0,0])
-boxId = p.loadURDF("/data/humanoid.urdf", startPos, startOrientation)
+boxId = p.loadURDF("humanoid_torso.urdf", startPos, startOrientation)
 
 """
 link_name_to_index = {p.getBodyInfo(boxId)[0].decode('UTF-8'):-1,}
@@ -60,7 +60,6 @@ for i in range(2):
 
     datawriter2.writerow(link_data)
     
-
     p.stepSimulation()
     time.sleep(1./240.)
 

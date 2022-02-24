@@ -11,7 +11,7 @@ tf.compat.v1.disable_eager_execution()
 
 cid = p.connect(p.SHARED_MEMORY)
 if (cid < 0):
-  cid = p.connect(p.GUI)  #DIRECT is much faster, but GUI shows the running gait
+  cid = p.connect(p.DIRECT)  #DIRECT is much faster, but GUI shows the running gait
 
 p.setGravity(0, 0, -9.8)
 p.setPhysicsEngineParameter(fixedTimeStep=1.0 / 60.,
@@ -21,14 +21,16 @@ p.setPhysicsEngineParameter(fixedTimeStep=1.0 / 60.,
 #this mp4 recording requires ffmpeg installed
 #mp4log = p.startStateLogging(p.STATE_LOGGING_VIDEO_MP4,"humanoid.mp4")
 
-p.loadSDF("/data/stadium.sdf")
-#p.loadURDF("plane.urdf")
+#p.loadSDF("/data/stadium.sdf")
+p.loadURDF("/data/plane.urdf")
 
 objs = p.loadMJCF("data/humanoid_symmetric_no_ground.xml",
                   flags=p.URDF_USE_SELF_COLLISION_EXCLUDE_ALL_PARENTS)
+
 human = objs[0]
 ordered_joints = []
 ordered_joint_indices = []
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--profile')
@@ -170,6 +172,7 @@ def demo_run():
   #timinglog = p.startStateLogging(p.STATE_LOGGING_PROFILE_TIMINGS, "humanoidTimings.json")
 
   frame = 0
+  print(human)
   while 1:
     obs = collect_observations(human)
 
